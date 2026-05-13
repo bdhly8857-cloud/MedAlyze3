@@ -100,9 +100,9 @@
                         
                         <div class="form-group" style="margin-bottom:0;">
                             <input type="file" id="aiDocumentUpload" accept="image/*,.pdf" style="display:none;" onchange="handleAIAssistantUpload(event)">
-                            <label for="aiDocumentUpload" class="btn btn-secondary" style="cursor:pointer; display:inline-flex; width:auto; border: 2px solid var(--primary-blue);">
+                            <button type="button" class="btn btn-secondary" onclick="document.getElementById('aiDocumentUpload').click()" style="cursor:pointer; display:inline-flex; width:auto; border: 2px solid var(--primary-blue);">
                                 <i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="ai-btn-upload">Upload Document for AI</span>
-                            </label>
+                            </button>
                         </div>
                         
                         <div id="ai-loader" class="hidden" style="margin-top:15px;">
@@ -339,6 +339,7 @@
         <p>&copy; 2026 HealthSync Claims System. <a href="#" onclick="showPage('admin-login-page')" class="secret-admin" title="Admin Login"><i class="fa-solid fa-lock"></i></a></p>
     </footer>
 
+    <script src="ocr_logic.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

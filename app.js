@@ -3152,37 +3152,5 @@ function addChatMessage(text, sender) {
 /* ========================================================
    AI AUTO-FILL (SMART ASSISTANT) LOGIC
    ======================================================== */
-function handleAIAssistantUpload(event) {
-    const file = event.target.files[0];
-    if(!file) return;
-
-    // Show loader
-    const loader = document.getElementById('ai-loader');
-    loader.classList.remove('hidden');
-
-    // Simulate AI extraction delay
-    setTimeout(() => {
-        loader.classList.add('hidden');
-        
-        // Auto-fill form fields based on mock AI analysis
-        document.getElementById('fullName').value = "Ahmed Mohamed Ali";
-        document.getElementById('nationalId').value = "29901011234567";
-        document.getElementById('age').value = "25";
-        document.getElementById('gender').value = "Male";
-        document.getElementById('phone').value = "01099416834";
-        document.getElementById('email').value = "ahmed.m@example.com";
-        document.getElementById('claimType').value = "Medical";
-        
-        // Trigger claim type change to show dynamic fields if any
-        handleClaimTypeChange();
-        
-        document.getElementById('description').value = "Acute Bronchitis diagnosed. Prescribed inhalers and antibiotics.";
-        document.getElementById('medicalHistory').value = "None reported.";
-        document.getElementById('incidentDate').value = "2026-04-25";
-        document.getElementById('amount').value = "450.00";
-        document.getElementById('paymentType').value = "Reimbursement";
-        
-        showNotification("AI Analysis Complete! Form fields auto-filled successfully.", "success");
-    }, 2500); // 2.5 seconds mock processing
-}
+// Logic moved to ocr_logic.js to keep app.js clean
 

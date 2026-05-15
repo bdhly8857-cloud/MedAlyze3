@@ -9,7 +9,7 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import threading
 
-app = Flask(__name__, static_folder='public', static_url_path='')
+app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
 DB_FILE = 'claims.json'
@@ -88,7 +88,7 @@ def send_email_notification(claim):
 
 @app.route('/')
 def index():
-    return send_from_directory('public', 'index.html')
+    return send_from_directory('.', 'index.html')
 
 
 @app.route('/api/claims', methods=['POST'])

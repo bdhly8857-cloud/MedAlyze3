@@ -3,7 +3,7 @@
  * Handles communication with the OCR API and data extraction
  */
 
-const OCR_API_ENDPOINT = 'http://10.10.10.119:5000/ocr';
+const OCR_API_ENDPOINT = 'http://127.0.0.1:5000/ocr';
 
 /**
  * Main handler for document upload
@@ -22,6 +22,11 @@ async function handleAIAssistantUpload(event) {
     formData.append('image', file);
 
     try {
+        if (!OCR_API_ENDPOINT) {
+            showNotification("OCR service is not configured. Please fill the form manually.", "error");
+            return;
+        }
+
         const response = await fetch(OCR_API_ENDPOINT, {
             method: 'POST',
             body: formData
@@ -35,11 +40,12 @@ async function handleAIAssistantUpload(event) {
             showNotification("OCR Successful! Form fields updated.", "success");
         } else {
             console.error("OCR Error:", data.error);
+            if (data.traceback) console.error("Traceback:", data.traceback);
             showNotification("OCR Failed: " + (data.error || "Unknown error"), "error");
         }
     } catch (error) {
         console.error("Network Error calling OCR API:", error);
-        showNotification("Could not connect to OCR service at " + OCR_API_ENDPOINT, "error");
+        showNotification("Could not connect to OCR service. Please fill the form manually.", "error");
     } finally {
         if (loader) loader.classList.add('hidden');
         // Reset file input so same file can be uploaded again if needed
